@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RhioT</string>
+    <string name="login_error">login failure</string>
+    <string name="rhin_logo">rhin_logo</string>
+    <string name="female">여자</string>
+    <string name="male">남자</string>
+
+    <string name="k_year">년</string>
+    <string name="k_month">월</string>
+    <string name="k_day">일</string>
+
+    <string name="patient_qrcode">환자 QR 코드</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
