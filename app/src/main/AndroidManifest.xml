@@ -14,11 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MeasureTypeActivity"></activity>
+        <activity android:name=".MeasureHistoryActivity"></activity>
+        <activity android:name=".MeasureTypeActivity" />
         <activity android:name=".LoginLoadingDialog" />
         <activity
             android:name=".MainMenuActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity
             android:name=".NurseRegistActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

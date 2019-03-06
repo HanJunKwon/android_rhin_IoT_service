@@ -110,8 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // 로딩 실행
                 LoadingTask loadingTask = new LoadingTask();
                 loadingTask.execute();
-
-
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
