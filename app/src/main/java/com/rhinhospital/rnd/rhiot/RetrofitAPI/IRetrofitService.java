@@ -185,6 +185,7 @@ public interface IRetrofitService {
 
     @GET("getNurseInfo")
     Call<Nurse> getNurseInfo(@Query("emp_no") String emp_no);
+    
 
     @GET("getPatientMeasurementHistory")
     Call<ArrayList<MeasurementHistory>> getMeasurementHistory(@Query("patient_no") String patient_no, @Query("page") int page);
