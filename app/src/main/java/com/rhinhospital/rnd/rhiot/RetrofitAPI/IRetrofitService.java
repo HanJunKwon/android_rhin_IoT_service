@@ -4,8 +4,10 @@ package com.rhinhospital.rnd.rhiot.RetrofitAPI;
 import com.rhinhospital.rnd.rhiot.Model.Nurse;
 import com.rhinhospital.rnd.rhiot.Result.Department;
 import com.rhinhospital.rnd.rhiot.Result.Login;
+import com.rhinhospital.rnd.rhiot.Result.MeasurementHistory;
 import com.rhinhospital.rnd.rhiot.Result.Position;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -182,5 +184,8 @@ public interface IRetrofitService {
     Call<Position> getPositionList();
 
     @GET("getNurseInfo")
-    Call<Nurse>getNurseInfo(@Query("emp_no") String emp_no);
+    Call<Nurse> getNurseInfo(@Query("emp_no") String emp_no);
+
+    @GET("getPatientMeasurementHistory")
+    Call<ArrayList<MeasurementHistory>> getMeasurementHistory(@Query("patient_no") String patient_no, @Query("page") int page);
 }

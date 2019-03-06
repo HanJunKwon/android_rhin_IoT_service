@@ -8,8 +8,8 @@
 
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleMeasurementHistory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/mearsurement_list_item"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

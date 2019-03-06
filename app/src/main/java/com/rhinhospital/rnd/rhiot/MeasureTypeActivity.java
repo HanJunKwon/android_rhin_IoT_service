@@ -16,6 +16,9 @@ public class MeasureTypeActivity extends AppCompatActivity implements View.OnCli
 
         fbtnBloodPressure = (FButton) findViewById(R.id.btnBloodPressure);
         fbtnBloodPressure.setOnClickListener(this);
+
+        fbtnMeasureHistory = (FButton) findViewById(R.id.btnMeasureHistory);
+        fbtnMeasureHistory.setOnClickListener(this);
     }
 
     @Override
