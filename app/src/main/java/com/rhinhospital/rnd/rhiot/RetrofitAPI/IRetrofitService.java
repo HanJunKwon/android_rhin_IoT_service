@@ -1,6 +1,7 @@
 package com.rhinhospital.rnd.rhiot.RetrofitAPI;
 
 
+import com.rhinhospital.rnd.rhiot.Model.BloodPressure;
 import com.rhinhospital.rnd.rhiot.Model.Nurse;
 import com.rhinhospital.rnd.rhiot.Result.Department;
 import com.rhinhospital.rnd.rhiot.Result.Login;
@@ -185,7 +186,11 @@ public interface IRetrofitService {
 
     @GET("getNurseInfo")
     Call<Nurse> getNurseInfo(@Query("emp_no") String emp_no);
-    
+
+    @GET("")
+    Call<BloodPressure> setBloodPressureMeasure(@Query("emp_no") String emp_no, @Query("patient_no") String patient_no,
+                                                @Query("maximal_blood_pressure") int maximal_blood_pressure, @Query("minimal_blood_pressure") int minimal_blood_pressure,
+                                                @Query("heart_per_rate") int heart_per_rate);
 
     @GET("getPatientMeasurementHistory")
     Call<ArrayList<MeasurementHistory>> getMeasurementHistory(@Query("patient_no") String patient_no, @Query("page") int page);
