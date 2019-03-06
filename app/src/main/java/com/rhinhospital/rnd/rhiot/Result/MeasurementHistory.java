@@ -1,9 +1,15 @@
 package com.rhinhospital.rnd.rhiot.Result;
 
+import com.google.gson.annotations.SerializedName;
+
 public class MeasurementHistory {
+    @SerializedName(value="maximal_blood_pressure")
     private String maximalBloodPressure;
+    @SerializedName(value="minimal_blood_pressure")
     private String minimalBloodPressure;
+    @SerializedName(value="heart_rate_per_minute")
     private String heartRatePerMinute;
+    @SerializedName(value="created_at")
     private String createdAt;
 
     public String getMaximalBloodPressure() {
