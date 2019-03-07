@@ -18,42 +18,42 @@
     <info.hoang8f.widget.FButton
         android:id="@+id/btnBloodPressure"
         android:layout_width="190dp"
-        android:layout_height="190dp"
-        android:drawableLeft="@drawable/ic_bloodpressure3_36px"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_bloodpressure3_120px"
         android:text="혈압\n측정"
         android:textColor="@android:color/white"
         android:textSize="@android:dimen/app_icon_size"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         />
     <info.hoang8f.widget.FButton
         android:id="@+id/btnOxygenSaturation"
         android:layout_width="190dp"
-        android:layout_height="190dp"
-        android:drawableLeft="@drawable/ic_body_temperature_36px"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_body_temperature_120px"
         android:text="체온\n측정"
         android:textColor="@android:color/white"
         android:textSize="@android:dimen/app_icon_size"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         />
     <info.hoang8f.widget.FButton
         android:id="@+id/btnBodyTemperature"
         android:layout_width="190dp"
-        android:layout_height="190dp"
-        android:drawableLeft="@drawable/ic_bloodsugar_36px"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_bloodsugar_120px"
         android:text="혈당\n측정"
         android:textColor="@android:color/white"
         android:textSize="@android:dimen/app_icon_size"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         />
     <info.hoang8f.widget.FButton
         android:id="@+id/btnMeasureHistory"
         android:layout_width="190dp"
-        android:layout_height="190dp"
-        android:drawableLeft="@drawable/ic_email_white_24dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_history_120px"
         android:text="측정\n이력"
         android:textColor="@android:color/white"
         android:textSize="@android:dimen/app_icon_size"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         />
 
 

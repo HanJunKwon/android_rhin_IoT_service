@@ -39,11 +39,5 @@
         android:layout_height="wrap_content"
         android:textSize="19dp"
         android:text="측정 시간:" />
-    
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInparent="true"
-        android:background="#807D7D"/>
 
 </LinearLayout>
