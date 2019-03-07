@@ -1,5 +1,7 @@
 package com.rhinhospital.rnd.rhiot;
 
+import android.content.SharedPreferences;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,6 +32,14 @@ public class MeasureHistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_measure_history);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        String nurse_name = pref.getString("nurse_name","");
+
+        Log.d(TAG, nurse_name);
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle(nurse_name+"/권한준 26세 남");
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycleMeasurementHistory);
         mLinearLayoutManager = new LinearLayoutManager(this);

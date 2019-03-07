@@ -11,202 +11,248 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
-            android:text="Device Scan"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_centerHorizontal="true"
-            android:id="@+id/iot_device_scan"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iot_device_scan"
-            android:id="@+id/iot_devicename_layout"
-            android:orientation="horizontal">
+            android:id="@+id/iot_img_omron"
+            android:src="@drawable/omron"/>
+        <!--<WebView-->
+        <!--android:layout_width="350sp"-->
+        <!--android:layout_height="250sp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id="@+id/iot_webview"-->
+        <!--tools:ignore="WebViewLayout">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Device Name : "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/iot_get_device_name"
-                android:text=""/>
-        </LinearLayout>
-        <LinearLayout
+        <!--</WebView>-->
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/iot_device_mac_layout"
-            android:layout_below="@+id/iot_devicename_layout"
-            android:orientation="horizontal">
+            android:layout_height="50dp"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="데이터 가져오기"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/iot_device_scan"
+            android:layout_below="@id/iot_img_omron"/>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/iot_device_scan"-->
+            <!--android:id="@+id/iot_devicename_layout"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mac Address : "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/iot_get_device_mac"
-                android:text=""/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iot_device_mac_layout"
-            android:orientation="horizontal">
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Device Name : "/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/iot_get_device_name"-->
+                <!--android:text=""/>-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/iot_device_mac_layout"-->
+            <!--android:layout_below="@+id/iot_devicename_layout"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Status : "/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/iot_status_log"
-                android:textSize="20sp"
-                android:text=""/>
-        </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Mac Address : "/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/iot_get_device_mac"-->
+                <!--android:text=""/>-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/iot_device_mac_layout"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="20sp"-->
+                <!--android:text="Status : "/>-->
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/iot_status_log"-->
+                <!--android:textSize="20sp"-->
+                <!--android:text=""/>-->
+        <!--</LinearLayout>-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_measurements"
             android:textSize="30sp"
-            android:layout_marginTop="60dp"
-            android:text="Measurements"
+            android:layout_marginTop="30dp"
+            android:text="측정 결과"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/iot_devicename_layout"/>
+            android:layout_below="@+id/iot_device_scan"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:id="@+id/measurements_layout_all"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/shape_rounded_blood_pressure"
-            android:layout_below="@+id/text_measurements"
-            android:id="@+id/time_layout"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_below="@+id/text_measurements">
 
-
-            <TextView
-                android:id="@+id/timestamp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_time"
-                android:gravity="end|center_vertical"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:text="2017-06-07 15:37"
-                />
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/time_layout"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/timestamp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_time"
+                    android:gravity="end|center_vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text=" "
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/measurements_layout"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="수축기 혈압"
+                    android:textColor="@color/black_normal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
+                <TextView
+                    android:id="@+id/systolic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black_normal"
+                    android:text=" "
+                    />
+                <TextView
+                    android:id="@+id/systolicUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:paddingTop="25dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black_normal"
+                    android:text="mmHg"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/measurements_layout_dia"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="이완기 혈압"
+                    android:textColor="@color/black_normal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
+                <TextView
+                    android:id="@+id/diastolic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:text=" "
+                    android:textColor="@color/black_normal"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:paddingTop="25dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black_normal"
+                    android:text="mmHg"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/measurements_layout_pulse"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="맥박수"
+                    android:textColor="@color/black_normal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
+                <TextView
+                    android:id="@+id/pulse_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:text=" "
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black_normal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:paddingTop="25dp"
+                    android:layout_alignParentRight="true"
+                    android:text="Bpm"
+                    android:textColor="@color/black_normal"
+                    />
+            </RelativeLayout>
         </LinearLayout>
 
-
-        <RelativeLayout
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/shape_rounded_blood_pressure"
-            android:id="@+id/measurements_layout"
-            android:layout_below="@+id/time_layout">
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="데이터 저장하기"
+            android:textSize="20sp"
+            android:id="@+id/iot_transmission"
+            android:layout_below="@+id/measurements_layout_all"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Systolic"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                />
-            <TextView
-                android:id="@+id/systolic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="40sp"
-                android:layout_marginRight="50dp"
-                android:layout_alignParentRight="true"
-                android:text=" "
-                />
-            <TextView
-                android:id="@+id/systolicUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:paddingTop="25dp"
-                android:layout_alignParentRight="true"
-                android:text="mmHg"
-                />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/shape_rounded_blood_pressure"
-            android:id="@+id/measurements_layout_dia"
-            android:layout_below="@+id/measurements_layout">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Diastolic"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                />
-            <TextView
-                android:id="@+id/diastolic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="40sp"
-                android:text=" "
-                android:layout_marginRight="50dp"
-                android:layout_alignParentRight="true"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:paddingTop="25dp"
-                android:layout_alignParentRight="true"
-                android:text="mmHg"
-                />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/shape_rounded_blood_pressure"
-            android:id="@+id/measurements_layout_pulse"
-            android:layout_below="@+id/measurements_layout_dia">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pulse Rate"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                />
-            <TextView
-                android:id="@+id/pulse_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="40sp"
-                android:text=" "
-                android:layout_marginRight="50dp"
-                android:layout_alignParentRight="true"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:paddingTop="25dp"
-                android:layout_alignParentRight="true"
-                android:text="Bpm"
-                />
-        </RelativeLayout>
 
     </RelativeLayout>
 

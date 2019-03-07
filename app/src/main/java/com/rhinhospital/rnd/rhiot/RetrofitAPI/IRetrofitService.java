@@ -178,20 +178,49 @@ public interface IRetrofitService {
     @GET("login")
     Call<Login> login(@Query("emp_no") String emp_no, @Query("password") String password);
 
+    /**
+     * 부서 정보 가져오기
+     * @return
+     */
     @GET("getDepartmentList")
     Call<Department> getDepartmentList();
 
+    /**
+     * 직급 정보 가져오긴
+     * @return
+     */
     @GET("getPositionList")
     Call<Position> getPositionList();
 
+    /**
+     * 간호사 정보 가져오기
+     * @param emp_no
+     * @return
+     */
     @GET("getNurseInfo")
     Call<Nurse> getNurseInfo(@Query("emp_no") String emp_no);
 
-    @GET("")
+    /**
+     * 혈압 측정 결과 보내기
+     * @param emp_no
+     * @param patient_no
+     * @param maximal_blood_pressure
+     * @param minimal_blood_pressure
+     * @param heart_per_rate
+     * @param curr_time
+     * @return
+     */
+    @GET("setBloodPressureMeasureResult")
     Call<BloodPressure> setBloodPressureMeasure(@Query("emp_no") String emp_no, @Query("patient_no") String patient_no,
                                                 @Query("maximal_blood_pressure") int maximal_blood_pressure, @Query("minimal_blood_pressure") int minimal_blood_pressure,
-                                                @Query("heart_per_rate") int heart_per_rate);
+                                                @Query("heart_per_rate") int heart_per_rate, @Query("curr_time") long curr_time);
 
+    /**
+     * 혈압 측정 이력 가져오기
+     * @param patient_no
+     * @param page
+     * @return
+     */
     @GET("getPatientMeasurementHistory")
     Call<ArrayList<MeasurementHistory>> getMeasurementHistory(@Query("patient_no") String patient_no, @Query("page") int page);
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,12 +8,15 @@
     android:orientation="vertical"
     tools:context=".MainMenuActivity">
 
-
-    <Button
-        android:id="@+id/btnPatientQR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/imgbtn_back"
-        android:text="환자 QR 코드" />
+    <info.hoang8f.widget.FButton
+        android:id="@+id/btnPatientQRCode"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:drawableLeft="@drawable/ic_qr_code_100px"
+        android:text="환자 QR 코드 입력"
+        android:textColor="@android:color/white"
+        android:textSize="@android:dimen/app_icon_size"
+        android:layout_margin="10dp"
+        />
 
 </LinearLayout>

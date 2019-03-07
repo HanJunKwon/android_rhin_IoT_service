@@ -27,10 +27,16 @@ import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rhinhospital.rnd.rhiot.Model.BloodPressure;
+import com.rhinhospital.rnd.rhiot.RetrofitAPI.RetrofitService;
 import com.rhinhospital.rnd.rhiot.util.RhinLog;
 
 import java.text.DateFormat;
@@ -39,8 +45,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class IoTServiceActivity extends Activity {
+    private final static String TAG = "IoTServiceActivity";
 
     // used to request fine location permission
     private final static int REQUEST_FINE_LOCATION= 2;
@@ -55,6 +66,8 @@ public class IoTServiceActivity extends Activity {
     private List<ScanFilter> mFilters;
     private BluetoothGatt mGatt;
     private Button mBtnScan = null;
+    private WebView mWebView = null;
+    private Button mBtnTransmission = null;
     BluetoothManager mBluetoothManager;
     private static final int MEASURMENTS_MESSAGE_HANDLER = 0;
     private static final int DEVICEFOUND_MESSAGE_HANDLER = 1;
@@ -88,7 +101,7 @@ public class IoTServiceActivity extends Activity {
         RhinLog.print("-- Ble Init --");
         ble_init();
         //blue_scan();
-        mTxtStatus.setText(" Device Scan Ready ");
+        //mTxtStatus.setText(" Device Scan Ready ");
     }
 
 
@@ -106,6 +119,37 @@ public class IoTServiceActivity extends Activity {
         }
     }
 
+    private void webViewInit() {
+        /*
+        String url = "https://youtu.be/0yOiYHEp7nw";
+
+        mWebView = findViewById(R.id.iot_webview);
+        mWebView.setInitialScale(1);
+        mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        mWebView.setWebViewClient(new WebViewClient()
+        {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setAllowContentAccess(true);
+        webSettings.setEnableSmoothTransition(true);
+        webSettings.setLoadsImagesAutomatically(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setSupportZoom(false);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setSupportMultipleWindows(true);
+        mWebView.loadUrl(url);
+        */
+    }
+
     private  void view_init() {
 
         mMessageHandler = new SendMessageHandler();
@@ -113,13 +157,18 @@ public class IoTServiceActivity extends Activity {
         if( mBtnScan != null ) {
             mBtnScan.setOnClickListener(mBtnClickListener);
         }
-        mTxtStatus = (TextView)findViewById(R.id.iot_status_log);
-        mTxtDevice = (TextView)findViewById(R.id.iot_get_device_name);
-        mTxtMac = (TextView)findViewById(R.id.iot_get_device_mac);
+        mBtnTransmission = (Button)findViewById(R.id.iot_transmission);
+        if( mBtnTransmission != null ) {
+            mBtnTransmission.setOnClickListener(mBtnClickListener);
+        }
+//        mTxtStatus = (TextView)findViewById(R.id.iot_status_log);
+//        mTxtDevice = (TextView)findViewById(R.id.iot_get_device_name);
+//        mTxtMac = (TextView)findViewById(R.id.iot_get_device_mac);
         mTxtSystolic = (TextView)findViewById(R.id.systolic);
         mTxtDiastolic = (TextView)findViewById(R.id.diastolic);
         mTxtPulseRate = (TextView)findViewById(R.id.pulse_rate);
         mTxtTime = (TextView)findViewById(R.id.timestamp);
+
     }
 
     /*
@@ -142,7 +191,7 @@ public class IoTServiceActivity extends Activity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void blue_scan(){
         RhinLog.print("-- Ble Scab Start--");
-        mTxtStatus.setText(" BlueTooth Scan Start");
+        //mTxtStatus.setText(" BlueTooth Scan Start");
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
             requestEnableBLE();
         }
@@ -181,12 +230,34 @@ public class IoTServiceActivity extends Activity {
         scanLeDevice(true);
     }
 
+    /**
+     * 측정 결과 전송
+     */
+    private void measurementsDataTransmission() {
+        Call<BloodPressure> bloodPressureTransmission = RetrofitService.getInstance().getService().setBloodPressureMeasure("0","00001", Integer.parseInt(mStrSys), Integer.parseInt(mStrDia), Integer.parseInt(mStrPulse), Long.parseLong(mStrTime));
+        bloodPressureTransmission.enqueue(new Callback<BloodPressure>() {
+            @Override
+            public void onResponse(Call<BloodPressure> call, Response<BloodPressure> response) {
+                Log.d(TAG, "onResponse");
+                Log.d(TAG, response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<BloodPressure> call, Throwable t) {
+                Log.d(TAG, t.getMessage());
+            }
+        });
+    }
+
     Button.OnClickListener mBtnClickListener = new View.OnClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.M)
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.iot_device_scan:
                     blue_scan();
+                    break;
+                case R.id.iot_transmission:
+                    measurementsDataTransmission();
                     break;
             }
         }
@@ -217,12 +288,13 @@ public class IoTServiceActivity extends Activity {
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         if (mGatt == null) {
             return;
         }
         mGatt.close();
         mGatt = null;
-        super.onDestroy();
+
     }
 
     @Override
@@ -253,7 +325,7 @@ public class IoTServiceActivity extends Activity {
             if (Build.VERSION.SDK_INT < 21) {
                 mBluetoothAdapter.startLeScan(mLeScanCallback);
             } else {
-                mTxtStatus.setText(" BlueTooth Start Scan !");
+                //mTxtStatus.setText(" BlueTooth Start Scan !");
                 RhinLog.print("-- Start Scan Ble Device Set Callback--");
                 mLEScanner.startScan(mFilters, settings, mScanCallback);
             }
@@ -261,7 +333,8 @@ public class IoTServiceActivity extends Activity {
             if (Build.VERSION.SDK_INT < 21) {
                 mBluetoothAdapter.stopLeScan(mLeScanCallback);
             } else {
-                mLEScanner.stopScan(mScanCallback);
+                if(mLEScanner != null)
+                    mLEScanner.stopScan(mScanCallback);
             }
         }
     }
@@ -271,6 +344,8 @@ public class IoTServiceActivity extends Activity {
     private ScanCallback mScanCallback = new ScanCallback() {
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
+            RhinLog.print("--onScanResult ---" );
+            if(mParied == true) return;
             RhinLog.print("--callbackType" + String.valueOf(callbackType));
             RhinLog.print("--result" + result.toString());
             // get scanned device
@@ -294,7 +369,7 @@ public class IoTServiceActivity extends Activity {
 
             //if(strDeviceName != null && (mParied == false) ){
             if(strDeviceName != null ){
-                if (strDeviceName.contains("BLEsmart") ) {
+                if (strDeviceName.contains("BLEsmart") ||strDeviceName.contains("BLESmart") ) {
                     RhinLog.print("-- Find Ble Device Device Name --" + strDeviceName);
                     RhinLog.print("-- Find Ble Device Device Mac --" + strDeviceMac);
                     mParied = true;
@@ -310,8 +385,8 @@ public class IoTServiceActivity extends Activity {
                     connectToDevice(btDevice);
                 }
             }
-           // if(!mTxtDevice.getText().toString().isEmpty()) {
-                //if (btDevice.getName().contains("BLESmart_00000")) {//3번 :: 오므론 디바이스 네임이 맞으면.. gatt connect 한다.
+            // if(!mTxtDevice.getText().toString().isEmpty()) {
+            //if (btDevice.getName().contains("BLESmart_00000")) {//3번 :: 오므론 디바이스 네임이 맞으면.. gatt connect 한다.
 //                if(mTxtDevice.getText().toString().contains("BLESmart_00000")) {
 //                    connectToDevice(btDevice);
 //                    scanLeDevice(false);
@@ -360,8 +435,8 @@ public class IoTServiceActivity extends Activity {
             mGatt = device.connectGatt(this, false, gattCallback);
             //4번 :: 커넥트가 잘되면 gattCallback에 onConnectionStateChange로 콜백이 온다.
             RhinLog.print("-- ScanLeDevice Stop --");
-            scanLeDevice(false);// will stop after first device detection
         }
+        scanLeDevice(false);// will stop after first device detection
     }
 
     private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
@@ -379,12 +454,12 @@ public class IoTServiceActivity extends Activity {
                 case BluetoothProfile.STATE_DISCONNECTED:
                     RhinLog.print("BlueTooth GattCalback STATE_DISCONNECTED");
                     mParied = false;
-                    scanLeDevice(true);
-//                    if (mGatt == null) {
-//                        break;
-//                    }
-//                    mGatt.close();
-//                    mGatt = null;
+                    //scanLeDevice(true);
+                    if (mGatt == null) {
+                        break;
+                    }
+                    mGatt.close();
+                    mGatt = null;
                     break;
                 default:
                     Log.e("gattCallback", "STATE_OTHER");
@@ -504,13 +579,13 @@ public class IoTServiceActivity extends Activity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case MEASURMENTS_MESSAGE_HANDLER:
-                    mTxtTime.setText(mStrTime);
-                    mTxtSystolic.setText(mStrSys);
-                    mTxtDiastolic.setText(mStrDia);
-                    mTxtPulseRate.setText(mStrPulse);
+                    mTxtTime.setText(mStrTime); // 측정시간
+                    mTxtSystolic.setText(mStrSys); // 수축기 혈압
+                    mTxtDiastolic.setText(mStrDia); // 이완기 혈압
+                    mTxtPulseRate.setText(mStrPulse); // 맥박수
                     break;
                 case DEVICEFOUND_MESSAGE_HANDLER:
-                    mTxtStatus.setText(" Find Ble Device = " + mStrDeviceName);
+                    //mTxtStatus.setText(" Find Ble Device = " + mStrDeviceName);
                     break;
             }
         }

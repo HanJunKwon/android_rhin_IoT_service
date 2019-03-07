@@ -42,7 +42,7 @@ public class MeasurementHistoryAdapter extends RecyclerView.Adapter<MeasurementH
      */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.tvMeasurer.setText("측정자:"+mList.get(i).getMeasurement());
+        viewHolder.tvMeasurer.setText("측정자:"+mList.get(i).getMeasurer());
         viewHolder.tvMaximal.setText("최고 혈압:"+mList.get(i).getMaximalBloodPressure());
         viewHolder.tvMinimal.setText("최저 혈압:"+mList.get(i).getMinimalBloodPressure());
         viewHolder.tvHeartPerRate.setText("심박수:"+mList.get(i).getHeartRatePerMinute());

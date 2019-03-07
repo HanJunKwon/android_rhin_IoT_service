@@ -17,9 +17,11 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import info.hoang8f.widget.FButton;
+
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
     private final static String TAG = "MainMenuActivity";
-    private Button btnPatientQRCode;
+    private FButton btnPatientQRCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +32,21 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         Log.d(TAG, nurse_name);
         ActionBar ab = getSupportActionBar();
         ab.setTitle(nurse_name);
-        btnPatientQRCode = (Button)findViewById(R.id.btnPatientQR);
+        btnPatientQRCode = (FButton)findViewById(R.id.btnPatientQRCode);
         btnPatientQRCode.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnPatientQR:
+            case R.id.btnPatientQRCode:
 //                Intent intent = new Intent(MainMenuActivity.this, MeasureTypeActivity.class);
 //                startActivity(intent);
-                new IntentIntegrator(this).initiateScan();
+//                new IntentIntegrator(this).initiateScan();
+                IntentIntegrator integrator = new IntentIntegrator(this);
+                integrator.setCaptureActivity( ZxingActivity.class );
+                integrator.setOrientationLocked(false);
+                integrator.initiateScan();
                 break;
         }
     }
